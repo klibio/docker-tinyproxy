@@ -7,7 +7,7 @@ Docker Tinyproxy
 
 > Docker implementation of [TinyProxy](https://github.com/tinyproxy/tinyproxy)
 
-# Getting started
+## Getting started
 
 For testing purpose, you may want to change the **tinyproxy.conf** and switch the **LogLevel** value to **Info** and comment the Allow line.
 
@@ -33,10 +33,13 @@ docker run -t -i \
   curl https://www.google.com
 ```
 
-# Custom Tinyproxy configuration
+## Custom Tinyproxy configuration
 
 ```
-docker run -t -i -v $(pwd)/tinyxproxy.conf:/etc/tinyproxy/tinyproxy.conf --net host -p 8888:8888 tinyproxy
+docker run -t -i \
+  -v $(pwd)/tinyxproxy.conf:/etc/tinyproxy/tinyproxy.conf
+  -p 8888:8888 \
+  tinyproxy
 ```
 
 ## License
