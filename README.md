@@ -21,6 +21,9 @@ docker run -d --name tinyproxy -p 8888:8888 tinyproxy
 # proxy request via the running container
 http_proxy=127.0.0.1:8888 https_proxy=127.0.0.1:8888 curl https://www.google.com -v
 
+# or
+curl -x 127.0.0.1:8888 curl https://www.google.com -v
+
 # or proxy all requests from linux based containers
 docker run -t -i \
   -e "http_proxy=tinyproxy:8888" \
