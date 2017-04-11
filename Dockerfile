@@ -15,7 +15,7 @@ RUN apk --update add -t build-dependencies \
   && git clone -b ${TINYPROXY_VERSION} --depth=1 https://github.com/tinyproxy/tinyproxy.git \
   && cd tinyproxy \
   && ./autogen.sh \
-  && ./configure --enable-transparent \
+  && ./configure --enable-transparent --prefix=/ \
   && make \
   && make install \
   && cd / \
