@@ -4,7 +4,8 @@ MAINTAINER Travix
 
 ENV TINYPROXY_VERSION=1.8
 
-RUN apk --update add -t build-dependencies \
+RUN adduser -D -u 2000 -h /var/run/tinyproxy -s /sbin/nologin tinyproxy tinyproxy \
+  && apk --update add -t build-dependencies \
     make \
     automake \
     autoconf \
@@ -12,25 +13,22 @@ RUN apk --update add -t build-dependencies \
     asciidoc \
     git \
   && rm -rf /var/cache/apk/* \
-  && git clone -b ${TINYPROXY_VERSION} --depth=1 https://github.com/tinyproxy/tinyproxy.git \
-  && cd tinyproxy \
+  && git clone -b ${TINYPROXY_VERSION} --depth=1 https://github.com/tinyproxy/tinyproxy.git /tmp/tinyproxy \
+  && cd /tmp/tinyproxy \
   && ./autogen.sh \
-  && ./configure --enable-transparent --prefix=/ \
+  && ./configure --enable-transparent --prefix="" \
   && make \
   && make install \
+  && mkdir -p /var/log/tinyproxy \
+  && chown tinyproxy:tinyproxy /var/log/tinyproxy \
   && cd / \
+  && rm -rf /tmp/tinyproxy \
   && apk del build-dependencies
 
-# ALLOW_CIDRS, use space separacted list of CIDRS
-# LOG_LEVEL should be one of these: Critical, Error, Warning, Notice, Connect or Info
-ENV ALLOW_CIDRS="127.0.0.1" \
-    LOG_LEVEL="Warning"
-
 COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
-COPY entrypoint.sh /entrypoint.sh
+
+USER tinyproxy
 
 EXPOSE 8888
-
-ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["tinyproxy", "-d"]
