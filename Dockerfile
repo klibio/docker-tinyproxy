@@ -26,9 +26,12 @@ RUN adduser -D -u 2000 -h /var/run/tinyproxy -s /sbin/nologin tinyproxy tinyprox
   && apk del build-dependencies
 
 COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 USER tinyproxy
 
 EXPOSE 8888
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["tinyproxy", "-d"]
