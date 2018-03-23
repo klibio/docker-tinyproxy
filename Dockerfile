@@ -7,6 +7,7 @@ ENV TINYPROXY_VERSION=1.8
 RUN adduser -D -u 2000 -h /var/run/tinyproxy -s /sbin/nologin tinyproxy tinyproxy \
   && apk --update add -t build-dependencies \
     make \
+    libcap \
     automake \
     autoconf \
     g++ \
@@ -23,6 +24,7 @@ RUN adduser -D -u 2000 -h /var/run/tinyproxy -s /sbin/nologin tinyproxy tinyprox
   && chown tinyproxy:tinyproxy /var/log/tinyproxy \
   && cd / \
   && rm -rf /tmp/tinyproxy \
+  && setcap 'cap_net_bind_service=+ep' /sbin/tinyproxy \
   && apk del build-dependencies
 
 COPY tinyproxy.conf /etc/tinyproxy/tinyproxy.conf
