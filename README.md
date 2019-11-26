@@ -37,7 +37,7 @@ docker run -t -i \
 
 ```
 docker run -t -i \
-  -v $(pwd)/tinyxproxy.conf:/etc/tinyproxy/tinyproxy.conf
+  -v $(pwd)/tinyxproxy.conf:/etc/tinyproxy.conf
   -p 8888:8888 \
   tinyproxy
 ```
