@@ -1,6 +1,6 @@
 FROM travix/base-alpine:3.5
 
-MAINTAINER Travix
+MAINTAINER klibio
 
 ENV TINYPROXY_VERSION=1.8
 
