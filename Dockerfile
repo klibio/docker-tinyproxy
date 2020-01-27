@@ -1,4 +1,4 @@
-FROM travix/base-alpine:3.5
+FROM alpine:3.5
 
 MAINTAINER klibio
 

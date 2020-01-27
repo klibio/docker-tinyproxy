@@ -5,9 +5,9 @@
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-io.klib.tinyproxy-blue)](https://hub.docker.com/r/klibio/io.klib.tinyproxy/)
 
-
 [![Stars](https://img.shields.io/docker/stars/klibio/io.klib.tinyproxy.svg)](https://hub.docker.com/r/klibio/io.klib.tinyproxy/)
 [![Pulls](https://img.shields.io/docker/pulls/klibio/io.klib.tinyproxy.svg)](https://hub.docker.com/r/klibio/io.klib.tinyproxy/)
+[![License](https://img.shields.io/github/license/Travix-International/docker-tinyproxy.svg)](https://github.com/Travix-International/docker-tinyproxy/blob/master/LICENSE)
 
 > Docker implementation of [TinyProxy](https://github.com/tinyproxy/tinyproxy)
 
@@ -45,3 +45,7 @@ docker run -t -i \
   -p 8888:8888 \
   tinyproxy
 ```
+
+## License
+
+MIT © [Travix International](http://travix.com)
